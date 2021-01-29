@@ -1,9 +1,13 @@
 document.getElementById("case-increase").addEventListener("click",function(){
   handelCasePrice(true);
+  TaxAmount();
+  TotalAmount();
 })
 
 document.getElementById("case-decrease").addEventListener("click", function(){
  handelCasePrice(false);
+ TaxAmount();
+ TotalAmount();
 })
 
 function handelCasePrice(Increase){
@@ -28,10 +32,14 @@ function handelCasePrice(Increase){
 }
 
 document.getElementById("phone-increase").addEventListener("click",function(){
-  handelPhonePrice(true)
+  handelPhonePrice(true);
+  TaxAmount();
+  TotalAmount();
 })
 document.getElementById("phone-decrease").addEventListener("click",function(){
-  handelPhonePrice(false)
+  handelPhonePrice(false);
+  TaxAmount();
+  TotalAmount();
 })
 
 function handelPhonePrice(IsPhone){
@@ -54,3 +62,20 @@ function handelPhonePrice(IsPhone){
   totalCost.innerText = phoneNewcount*1219;
   SubTotal.innerText = TotalSubtotal;
  }
+
+function TaxAmount(){
+  const subtotalAmount = document.getElementById("subtotal");
+  const subtoNum = parseInt(subtotalAmount.innerText);
+  const Taxresult = (subtoNum/100)*2;
+  document.getElementById("MrTax").innerText = Taxresult;
+}
+function TotalAmount(){
+  const subtotalPrice = document.getElementById("subtotal");
+  const subtoPrice = parseFloat(subtotalPrice.innerText);
+  const taxid = document.getElementById("MrTax");
+  const taxidNum = parseFloat(taxid.innerText);
+  const finalprice = document.getElementById("totalPrices");
+  finalprice.innerText = subtoPrice+taxidNum;
+}
+TaxAmount();
+TotalAmount();
